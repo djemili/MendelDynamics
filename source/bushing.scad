@@ -174,6 +174,44 @@ cut_corners(true, true, true, true);
  
 }
 
+// Mendel Dynamics. Alternative y_bushing
+module y_linear_bearings_alt(cj=false){
+	difference(){
+		union(){
+			translate(v=[0,0,1.5]) cube(size = [26,14,3], center = true);
+			if (cj==false) {
+				translate(v=[-13,10,0])rotate(a=[0,0,30])cylinder(h = 3, r=7, $fn=6);
+				translate(v=[13,-10,0])rotate(a=[0,0,30])cylinder(h = 3, r=7, $fn=6); 
+			}
+			else {
+				translate(v=[-13,-10,0])rotate(a=[0,0,30])cylinder(h = 3, r=7, $fn=6);
+				translate(v=[13,10,0])rotate(a=[0,0,30])cylinder(h = 3, r=7, $fn=6); 
+			}
+		}
+		
+		if (cj==false) {
+			translate(v=[-14,10,0])polyhole(m3_diameter, 10);
+			translate(v=[14,-10,0])polyhole(m3_diameter, 10);
+		}
+		else {
+			translate(v=[-14,-10,0])polyhole(m3_diameter, 10);
+			translate(v=[14,10,0])polyhole(m3_diameter, 10);
+		}
+		
+		//hack
+		translate(v=[0,14.25,4.5]) rotate(a=[90,0,0]) translate(v=[0,9.5,0]) rotate(a=[0,0,90]){
+			translate(v=[0,0,lm8uu_length/2+0.5]) ziptie();
+		}
+	}
+	
+	if (cj==false) {
+		cut_corners(false, true, true, false); 
+	}
+	else {
+		cut_corners(true, false, false, true); 
+	}
+}
+
 lm8uu_holder_length = lm8uu_length+4.5;
 lm8uu_holder_width= lm8uu_diameter+5;
 
@@ -210,6 +248,28 @@ module z_linear_bearings(){
 			translate(v=[0,0,block_height-(12+2)-5]) ziptie();
 		}
 
+		//x-end adapter
+		difference(){	
+			translate(v=[-6,0,15.8/2]) cube(size = [10,23,15.8], center = true);
+			translate(v=[0,0,-2]) cylinder(h = 20, r=7.9, $fn=50);
+		}
+		translate(v=[-(10-5.5)/2-lm8uu_radius+2,0,0+1]) cube(size = [10-5.5,20,2], center = true);
+		translate(v=[-(10-5.5)/2-lm8uu_radius+2,0,lm8uu_length+4.0]) cube(size = [10-5.5,20,2], center = true);
+		translate(v=[-(10-5.5)/2-lm8uu_radius+2,0,64-lm8uu_length-3]) cube(size = [10-5.5,20,2], center = true);
+		translate(v=[-(10-5.5)/2-lm8uu_radius+2,0,64]) cube(size = [10-5.5,20,2], center = true);
+	}
+}
+
+// Mendel Dynamics z_bushing
+module z_linear_bearings(){
+	
+	translate(v=[0,9.5,0]) rotate(a=[0,0,90]){
+		difference(){
+			linear_holder_base(65);
+			translate(v=[0,0,14.5+2]) ziptie();
+			translate(v=[0,0,block_height-(12+2)-5]) ziptie();
+		}
+		
 		//x-end adapter
 		difference(){	
 			translate(v=[-6,0,15.8/2]) cube(size = [10,23,15.8], center = true);
