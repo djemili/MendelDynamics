@@ -144,5 +144,5 @@ module MotorHoles()
 	translate([motor_h_sep/2, -motor_h_sep/2, 0]) M3hole();
 	translate([-motor_h_sep/2, motor_h_sep/2, 0]) M3hole();
 	translate([-motor_h_sep/2, -motor_h_sep/2, 0]) M3hole();
-	translate(v=[0,0,0]) cylinder(r=26/2, h=grosor+2);
+	translate(v=[0,0,0]) cylinder(r=26/2, h=grosor+2, $fn=fnfn);
 }

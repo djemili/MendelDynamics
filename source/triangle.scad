@@ -66,14 +66,14 @@ difference() {
 	MycreateMeniscus(grosor+2,30,60);
 
 	// Left-bottom connection
-	translate([lateral/3-15, marge_curt, -1]) Connecton();
+	translate([lateral/3-15, marge_curt, -1]) Connection();
 
 	// Middle connections (z_end and z_motor)
-	translate([lateral/2, marge_curt + threaded_rod_diameter/2 + 6, -1]) Connecton();
-	translate([lateral/2, (lateral-marge_llarg)*sin(60)-marge_curt*cos(60) + threaded_rod_diameter/2 + 6, -1]) Connecton();
+	translate([lateral/2, marge_curt + threaded_rod_diameter/2 + 6, -1]) Connection();
+	translate([lateral/2, (lateral-marge_llarg)*sin(60)-marge_curt*cos(60) + threaded_rod_diameter/2 + 6, -1]) Connection();
 
 	// Left-bottom connection
-	translate([lateral*2/3+15, marge_curt, -1]) Connecton();
+	translate([lateral*2/3+15, marge_curt, -1]) Connection();
 
 	// front plate connection
 	rotate(60)

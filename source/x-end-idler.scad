@@ -1,46 +1,72 @@
-// PRUSA Mendel  
-// X-end with idler mount
+// Mendel Dynamics
+// X end idler plate
 // GNU GPL v3
-// Josef Průša
-// josefprusa@me.com
-// prusadjs.cz
-// http://www.reprap.org/wiki/Prusa_Mendel
-// http://github.com/prusajr/PrusaMendel
+// Emili Sapena 
+// emili@bcndynamics.com
+// bcndynamics.com
+// http://wiki-es.bcndynamics.com/Mendel_Dynamics
+// http://github.com/djemili/MendelDynamics
+// http://www.reprap.org/wiki/Mendel_Dynamics
 
+include <inc/roundCornersCube.scad>
 include <configuration.scad>
-corection = 1.17; 
+include <x-end-functions.scad>
 
 /**
- * @id x-end-idler
- * @name X end idler
- * @category Printed
- * @using 1 m8spring
- * @using 3 m8nut
- * @using 3 m8washer
- * @using 3 m8washer-big
- * @using 2 m8x30
+ * @id x-end-idler-plate
+ * @name X End idler plate
+ * @category Plate
  */ 
-use <x-end.scad>
-support_beam_offset=(linear==true) ? 6:0;
 
-module xendidler(linear){
-
-	xend(true,linear);
-	translate(v = [0, 0, 12.5]){
-		mirror(){
-			difference(){
-				union(){
-					translate(v = [21, -21.5, 25.3]) cube(size = [25.5,7,4.4], center = true);
-					
-					translate(v = [20, 12.5-support_beam_offset, 25.3]) cube(size = [24,5,4.4], center = true);
-					translate(v = [32.5, -5, 7.5]) cube(size = [5,40,40], center = true);
-				}
-				translate(v = [32.5, -6, 28-3-4.7]) rotate(a=[0,90,0]) cylinder(h = 90, r=m8_diameter/2, $fn=9, center=true);
-			}
-		}
-	}
-	translate([-5,-30,0])scale([2,1,2]) rotate(a=[90,0,0]) linear_extrude(file = "this-way-up.dxf", layer = "r",
-  height = 2, center = true, convexity = 10, twist = -fanrot);
+module x_end_idler() {
+	
+	union() {
+		difference() {
+			
+			translate([(llarg_xe+30)/2,ample_xe/2,grosor/2]) roundCornersCube(llarg_xe+30,ample_xe,grosor,10);
+			
+			// holes for plate-clamp (separation=15?)
+			translate([llarg_xe/4,ample_xe/2-xbars_separation/2-15/2,0]) M3hole();
+			translate([llarg_xe/4,ample_xe/2-xbars_separation/2+15/2,0]) M3hole();
+			translate([llarg_xe+20,ample_xe/2-xbars_separation/2-15/2,0]) M3hole();
+			translate([llarg_xe+20,ample_xe/2-xbars_separation/2+15/2,0]) M3hole();
+			
+			translate([llarg_xe/4,ample_xe/2+xbars_separation/2-15/2,0]) M3hole();
+			translate([llarg_xe/4,ample_xe/2+xbars_separation/2+15/2,0]) M3hole();
+			translate([llarg_xe+20,ample_xe/2+xbars_separation/2-15/2,0]) M3hole();
+			translate([llarg_xe+20,ample_xe/2+xbars_separation/2+15/2,0]) M3hole();
+			
+			// hole for rod
+			translate([llarg_xe-10,ample_xe/2,-1]) M8hole(grosor+2);
+			
+			// holes for lm8uu supports (z-bushing)
+			translate([llarg_xe-10 - 9.5,ample_xe/2 - 26/2,-1]) M3hole();
+			translate([llarg_xe-10 - 9.5,ample_xe/2 + 26/2,-1]) M3hole();
+			
+			// hex hole for nut
+			translate([llarg_xe-zdist-10,ample_xe/2,-1])
+			cylinder(r=m8_nut_diameter/2+0.2,h=grosor+2,$fn=6);
+			
+			
+			// x_end_idler_v connection
+			translate([llarg_xe-zdist/2,ample_xe/2+xbars_separation/2+15/2,-1])
+			Connection();
+			
+			// corner hole to fic x_end_idler_v
+			translate([llarg_xe-zdist/2+20,ample_xe/2+xbars_separation/2+15/2-15,-1]) M3hole();
+			
+		} //difference()
+		
+	} //union()
 }
-xendidler(linear);
+
+if (dxf) {
+	projection(cut = true) {
+		x_end_idler();
+	}
+}
+else {
+	x_end_idler();
+}
+
 

@@ -8,7 +8,7 @@
 // http://github.com/djemili/MendelDynamics
 // http://www.reprap.org/wiki/Mendel_Dynamics
 
-include <roundCornersCube.scad>
+include <inc/roundCornersCube.scad>
 include <configuration.scad>
 
 /**
@@ -27,13 +27,13 @@ module y_motor() {
 		translate([llarg_ym/2,ample_ym/2,-1])
 			MotorHoles();
 			
-		// forats M8 varilles
+		// M8 holes for rods
 		translate([llarg_ym/2-hole_separation/2, 15, -1])
 			cylinder(h=grosor+2, r=threaded_rod_diameter/2, $fn=fnfn);
 		translate([llarg_ym/2+hole_separation/2, 15, -1])
 			cylinder(h=grosor+2, r=threaded_rod_diameter/2, $fn=fnfn);
 		
-		// forats M8 cargol amb rodament 608
+		// M8 adjustable holes for bolts with bearings
 		translate([llarg_ym/2-hole_separation/2, ample_ym/2+8, -1])
 			cylinder(h=grosor+2, r=threaded_rod_diameter/2, $fn=fnfn);
 		translate([llarg_ym/2-hole_separation/2, ample_ym/2+15, grosor/2])
@@ -51,3 +51,11 @@ module y_motor() {
 	}
 }
 
+if (dxf) {
+	projection(cut = true) {
+		y_motor();
+	}
+}
+else {
+	y_motor();
+}

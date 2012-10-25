@@ -1,32 +1,54 @@
-Prusa Mendel iteration 2
+Mendel Dynamics
 
-This is second big change, formerly known as felt branch.
-Released 11.11.11 :-)
+Last stable version: 0.5
 
-Please read http://reprap.org/wiki/Prusa_Mendel before attempting to build this. There is also PDF (manual-wiki) with backup documentation from reprap.org.  
+(copyleft) Emili Sapena - Barcelona Dynamics.
 
 Imported stuff:
+Many printable pieces by Josef Průša
 Extruder by Greg Frost
 Parametric Involute Bevel and Spur Gears by GregFrost
 Belt pulley is http://www.thingiverse.com/thing:3104 by GilesBathgate
+RoundCornesCube by Sergio Vilches
 
-Prusa Mendel part list:
+Mendel Dynamics part list:
 
-To print (not including the extruder drive):
+Plates:
+  Plates are 2D plates that can be cut by laser or other technologies.
+  Material used can be methacrylate, wood, aluminium, or others.
+  Plates can also be 3D printed.
 
-4x frame-vertex-with-foot
-2x frame-vertex-without-foot
-2x coupling
-1x x-carriage
-1x x-end-idler
-1x x-end-motor
-2x z-motor-mount
-4x belt-clamp
-2x belt-clamp-nut-holder
-8x bar-clamp
-2x rod-clamp
-1x y-motor-bracket
-3x y-bushing
-3x endstop-holder
+  2x traingle
+  1x front
+  1x back
+  2x base
+  1x bed (don't use methacrylate here, wood is recommended)
+  1x x-carriage (can be methacrylate if you use a fan, otherwise wood is recommended)
+  1x x-end-motor
+  1x x-end-motor-top
+  1x x-end-motor-v
+  1x x-end-idler
+  1x x-end-idler-top
+  1x x-end-idler-v
+  2x z-motor
+  2x z-end
+  2x z-end-bottom
 
+Pieces:
+  3D objects printable by a 3D printer.
+  To print (not including the extruder drive):
 
+  4x belt-clamp
+  4x bar-clamp
+  2x corner
+ 16x rod-clamp
+ 16x plate-clamp
+  4x y-bushing
+  2x x-bushing-a
+  2x x-bushing-b
+  4x z-bushing
+  3x endstop-holder
+  
+  Optional:
+  2x pulley
+  2x coupling
