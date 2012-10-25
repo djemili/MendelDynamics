@@ -22,20 +22,6 @@ include <bushing.scad>
  */
 
 snap_in_mount = false;
-use <bushing.scad>
-
-module ybushing(mm){
 
 // Greg Frosts
-if (mm==0) {
-	y_linear_bearings();
-}
-else if (mm == 1 ) {
-	y_linear_bearings_alt(false);
-}
-else {
-	y_linear_bearings_alt(true);
-}
-}
-
 y_linear_bearings();
