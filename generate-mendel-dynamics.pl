@@ -13,13 +13,12 @@ use strict;
 
 # Set of plates. Can be done by laser-cut methacrylate, wood, aluminium.
 # Many of them can also be 3D-printed
-my @plates = ('triangle', 'base', 'front', 'back', 'bed', 'x-carriage', 'x-end-motor', 'x-end-motor-top', 'x-end-motor-v',
-'x-end-idler', 'x-end-idler-top', 'x-end-idler-v', 'y-motor', 'z-motor', 'z-end', 'z-end-bottom');
+my @plates = (); #('triangle', 'base', 'front', 'back', 'bed', 'x-carriage', 'x-end-motor', 'x-end-motor-top', 'x-end-motor-v',
+#	'x-end-idler', 'x-end-idler-top', 'x-end-idler-v', 'y-motor', 'z-motor', 'z-end', 'z-end-bottom');
 
 # Set of printable pieces
-my @pieces = (); #('bar-clamp', 'belt-clamp', 'corner', 'plate-clamp', );
-
-# openscad -s metric-prusa/z-motor-mount.stl source/z-motor-mount.scad
+my @pieces = ('bar-clamp', 'belt-clamp', 'corner', 'plate-clamp', 'rod-clamp', 'y-bushing', 'x-bushing-a',
+	'x-bushing-b', 'z-bushing');
 
 # plates in DXF
 print "Generating plates:\n";
@@ -35,7 +34,7 @@ foreach my $plate (@plates) {
 # printable pieces STL
 print "Generating pieces:\n";
 foreach my $piece (@pieces) {
-	my $cmd = "openscad -o objects/pieces/$piece.stl source/$piece.scad > log/$piece.stl.log";
+	my $cmd = "openscad -o objects/pieces/$piece.stl source/$piece.scad &> log/$piece.stl.log";
 	print "Executing $cmd...\n";
 	system($cmd);
 }

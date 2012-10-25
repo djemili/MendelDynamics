@@ -119,7 +119,7 @@ module M3hole(hex=0) {
 //Hole for Bearing 608
 module b608(h=8)
 {
-	translate([0,0,h/2]) cylinder(r=hole_for_608/2,h=h,center=true,$fn=60);
+	translate([0,0,h/2]) cylinder(r=hole_for_608/2,h=h,center=true,$fn=fnfn);
 }
 
 

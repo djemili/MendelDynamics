@@ -1,5 +1,5 @@
 // Mendel Dynamics
-// Y and X bushing holder
+// X bushing B
 // GNU GPL v3
 // Emili Sapena 
 // emili@bcndynamics.com
@@ -13,8 +13,8 @@ include <configuration.scad>
 include <bushing.scad>
 
 /**
- * @id y-bushing
- * @name Y bushing
+ * @id x-bushing-b
+ * @name X bushing B
  * @category Printed
  * @using 4 m3washer
  * @using 2 m3x15xhex
@@ -22,20 +22,5 @@ include <bushing.scad>
  */
 
 snap_in_mount = false;
-use <bushing.scad>
 
-module ybushing(mm){
-
-// Greg Frosts
-if (mm==0) {
-	y_linear_bearings();
-}
-else if (mm == 1 ) {
-	y_linear_bearings_alt(false);
-}
-else {
-	y_linear_bearings_alt(true);
-}
-}
-
-y_linear_bearings();
+y_linear_bearings_alt(true);
